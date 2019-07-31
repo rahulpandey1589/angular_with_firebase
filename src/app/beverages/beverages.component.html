@@ -1,0 +1,16 @@
+<div class="container">
+        <div class="row no-gutters">
+                <div class="col-sm-4 col-md-3 col-lg-3" *ngFor="let items of productItems">
+                    <app-product-info 
+                    [productCategory]="items.productCategory" 
+                    [productId]="items.productId" 
+                    [productName]="items.productName"
+                    [productUrl]="items.imageURL"
+                    [maxItemCanAddInCart]="items.maxItemAllowedInCart" 
+                    [costPrice]="items.costPrice"
+                    (addProductsToCart)="handleAddProductResult($event)" 
+                    (removeProductsFromCart)="handleRemoveProductResult($event)">
+                    </app-product-info>
+                </div>
+        </div>
+</div> 

@@ -1,0 +1,19 @@
+<div class="prod-wrapper">
+  <img class="prod-image" src="{{productUrl}}" alt="Product Image">
+  <span class="product-name">
+    {{productName}} at {{costPrice}}
+  </span>
+  <div class="row">
+    <div class="col">
+      <div class="col-sm-4">
+          <input type="image" class="add-remove-product" [disabled]="disableSubtractIcon()" (click)="removeProducts()"
+          src="../../../assets/images/icons8-minus-50.png"
+          alt="Remove">
+          <input type="text" maxlength="2" [(ngModel)]="itemCount" class="form-control">
+          <input type="image" class="add-remove-product" [disabled]='disableAddIcon()' (click)="addProducts()" 
+          src="../../../assets/images/icons8-add-50.png"
+          alt="Add">
+      </div>
+    </div>
+  </div>
+</div>

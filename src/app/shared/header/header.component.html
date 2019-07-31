@@ -1,0 +1,48 @@
+
+  <nav *ngIf="!(isLoggedIn$ | async)" class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink=''>Shopping Kart</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a routerLink='user/login'>Login</a></li>
+          <li><a routerLink="user/registration">SignUp</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <nav *ngIf="isLoggedIn$ | async" class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink='fruits'>Shopping Cart</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a routerLink='fruits'>Fruits</a></li>
+        <li><a routerLink='vegetables'>Vegetables</a></li>
+        <li><a routerLink='beverages'>Beverages</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a routerLink='cart'>Cart Details</a></li>
+          <li class="dropdown">
+            <a routerLink='admin'>Admin Settings <span class="caret"></span></a>
+            <ul class="dropdown-content">
+              <a routerLink='admin/dashboard'>Dashboard</a>
+              <a routerLink='admin/register-prod'>Register New Product</a>
+              <a routerLink='user/loadAllUsers'>Load Users</a>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a routerLink=''>My Account<span class="caret"></span></a>
+            <ul class="dropdown-content">
+              <a href="">My Orders</a>
+              <a href="">My Address</a>
+              <a href="">Change Password</a>
+            </ul>
+          </li>
+          <li><a (click)="onLogOutClick()" href="#">LogOut</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+

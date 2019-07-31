@@ -1,0 +1,28 @@
+.product-count{
+    width: 50px;
+    height: 30px;;
+}
+
+.prod-wrapper
+{
+    
+}
+
+.prod-image
+{
+    height: 200px;
+    width: 200px;
+}
+
+.add-remove-product{
+    width: 25px;
+    height: 25px;
+}
+
+.product-name{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+}

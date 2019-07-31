@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email Address</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let users of userList;index as i;">
+            <td>{{i+1}}</td>
+            <td>{{users.firstName}}</td>
+            <td>{{users.lastName}}</td>
+            <td>{{users.emailAddress}}</td>
+            <td>
+              <a (click)="viewUserDetails(users.userId)" class="btn btn-info">View User Info</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-6">
+      <div *ngIf="displayRightPanel">
+        <app-viewuser [firstName]="modelObj.firstName" [lastName]="modelObj.lastName"></app-viewuser>
+      </div>
+    </div>
+  </div>
+</div>

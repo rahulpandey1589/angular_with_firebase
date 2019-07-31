@@ -1,0 +1,29 @@
+<div class="container centered">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <label for="userName">User Name:</label>
+          <input type="text" placeholder="Please Enter User Name" class="form-control" formControlName="userName">
+          <div class="error-text" *ngIf="loginForm.controls['userName'].errors && loginForm.controls['userName'].touched">
+            <div *ngIf="loginForm.controls['userName'].errors.required">UserName is required</div>
+            <div *ngIf="loginForm.controls['userName'].errors.email">UserName should be in valid email format.</div>
+          </div>
+        </div>
+        <div class="row">
+          <label for="password">Password:</label>
+          <input type="password" placeholder="Please Enter Password" class="form-control" formControlName="password">
+          <div class="error-text" *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].touched">
+            <div *ngIf="loginForm.controls['password'].errors.required">Password is required</div>
+            <div *ngIf="loginForm.controls['password'].errors.minLength">Password should be of minumim 5 characters.</div>
+            <div *ngIf="loginForm.controls['password'].errors.maxLength">Password should be of maximum 15 characters.</div>
+          </div>
+        </div>
+        <div class="row clearfix">
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Login</button>
+            <a [routerLink]="['../forgotpassword']">Forgot Password</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
