@@ -58,7 +58,7 @@ export class ProductInfoComponent implements OnInit {
   }
 
   disableSubtractIcon():boolean{
-    return this.itemCount == 0 ? true:false;
+    return (this.itemCount == 0) == true;
   }
 
 }

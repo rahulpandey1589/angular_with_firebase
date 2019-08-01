@@ -38,7 +38,7 @@ const userRoutingRoutes: Routes = [
             {
                 path: 'viewuser',
                 component: ViewuserComponent,
-                canActivate: [AuthGuard]
+               canActivate: [AuthGuard]
             }
 
         ]

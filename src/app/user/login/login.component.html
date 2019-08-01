@@ -20,7 +20,10 @@
           </div>
         </div>
         <div class="row clearfix">
-            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Login</button>
+          <button 
+          type="submit" 
+          [disabled]="!loginForm.valid" 
+          class="btn btn-primary">Login</button>
             <a [routerLink]="['../forgotpassword']">Forgot Password</a>
         </div>
       </div>

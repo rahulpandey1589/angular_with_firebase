@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {FormGroup,FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/Authentication/auth.service';
+import { ConstantPool } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -36,5 +37,9 @@ export class LoginComponent implements OnInit,AfterViewInit {
        this._router.navigate(['/admin']);
      }
   }
+
+onClick(){
   
+}
+
 }
