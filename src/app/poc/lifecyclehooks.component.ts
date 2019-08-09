@@ -1,4 +1,13 @@
-import { Component, OnInit, OnChanges, SimpleChanges, Input } from "@angular/core";
+import { Component, 
+    OnInit, 
+    OnChanges, 
+    SimpleChanges, 
+    AfterContentInit, 
+    AfterContentChecked, 
+    AfterViewChecked, 
+    AfterViewInit, 
+    ViewChild,
+    ElementRef} from "@angular/core";
 
 
 
@@ -7,7 +16,16 @@ import { Component, OnInit, OnChanges, SimpleChanges, Input } from "@angular/cor
     templateUrl:'./lifecyclehooks.component.html'
 })
 
-export class AngularLifeCycleHooks implements OnInit,OnChanges{
+export class AngularLifeCycleHooks 
+                         implements 
+                         OnInit,OnChanges, 
+                         AfterContentInit,
+                         AfterContentChecked,
+                         AfterViewChecked,
+                         AfterViewInit{
+
+    @ViewChild('textValue') header: ElementRef
+                            
     constructor(){
         console.log('Constructor Called!!!');
     }
@@ -23,5 +41,22 @@ export class AngularLifeCycleHooks implements OnInit,OnChanges{
 
     onchange(){
 
+    }
+    ngAfterContentInit(){
+        console.log("After Content Init!!!");
+    }
+
+    ngAfterContentChecked(){
+        console.log("After Content Checked!!!");
+    }
+
+    ngAfterViewInit(){
+        console.log("After View Init!!!");
+       console.log('Text Content:',this.header.nativeElement.textContent);
+
+    }
+
+    ngAfterViewChecked(){
+        console.log("After View Checked!!!");
     }
 }

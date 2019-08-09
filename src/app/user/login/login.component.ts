@@ -2,7 +2,10 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {FormGroup,FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/Authentication/auth.service';
-import { ConstantPool } from '@angular/compiler';
+import { HttpClient } from '@angular/common/http';
+import { ServiceResponse } from 'src/app/shared/models';
+import { AuthorizeUser, AuthorizeUserErrorResponse } from 'src/app/shared/models/Response/authorize.user.response';
+
 
 @Component({
   selector: 'app-login',
@@ -11,7 +14,8 @@ import { ConstantPool } from '@angular/compiler';
 })
 export class LoginComponent implements OnInit,AfterViewInit {
 
-  constructor(private _userService: AuthService,private _router: Router) {
+  
+  constructor(private _userService: AuthService,private _router: Router, private httpclient: HttpClient, private authService: AuthService) {
 
    }
 
@@ -32,14 +36,25 @@ export class LoginComponent implements OnInit,AfterViewInit {
 
 
   onSubmit(){
-     let response = this._userService.validateUser('rahul','password');
-     if(response){
-       this._router.navigate(['/admin']);
-     }
+    let userName = this.loginForm.controls['userName'].value;
+    let password = this.loginForm.controls['password'].value;
+
+    this.authService.signIn(userName,password).subscribe((serviceResponse:AuthorizeUser) => {
+      if (serviceResponse.registered) {
+           console.log("User is registered")
+           localStorage.setItem('token',serviceResponse.idToken);
+           this._router.navigate(['/admin']);
+      }
+    },(errorResponse:AuthorizeUserErrorResponse) =>{
+       console.log(errorResponse.error.message)
+    });
+  }
+
+  constructSubmitUrl(){
+    
   }
 
 onClick(){
-  
 }
 
 }

@@ -7,6 +7,7 @@ import { UserRegistrationRequestModel } from '../../shared/models/Request/UserRe
 import { UserService } from '../../shared/services/DataService/user.service';
 import { ServiceResponse } from '../../shared/models/Response/service.response';
 import { RegisterUserApiResponse } from '../../shared/models/Response/RegisterUserApiResponse';
+import { AuthService } from 'src/app/shared';
 
 @Component({
   selector: 'app-userregistration',
@@ -18,7 +19,7 @@ export class UserregistrationComponent implements OnInit, CanDeActivateGuard {
   userCreated = false;
   userRegModel: UserRegistrationRequestModel;
 
-   constructor(private _userService: UserService) {
+   constructor(private _userService: UserService, private authService: AuthService) {
    }
 
   userRegistrationForm = new FormGroup({
@@ -45,16 +46,12 @@ export class UserregistrationComponent implements OnInit, CanDeActivateGuard {
     this.userRegModel.lastName = this.userRegistrationForm.controls['lastName'].value;
     this.userRegModel.emailAddress = this.userRegistrationForm.controls['emailAddress'].value;
     this.userRegModel.password = this.userRegistrationForm.controls['password'].value;
-    this._userService.registerUser(this.userRegModel).subscribe((result: ServiceResponse<RegisterUserApiResponse>) => {
-      if (result.response) {
-         console.log(result.response.firstName);
-         console.log(result.response.lastName);
-      }
-    }, error => {
-    },
-    () => {
 
-    });
+    this.authService.signUp(this.userRegModel.emailAddress,this.userRegModel.password).subscribe(response =>{
+       console.log(response);
+    },error =>{
+      console.log(error)
+    })
   }
 
   validateUserName(userName: string): boolean {
