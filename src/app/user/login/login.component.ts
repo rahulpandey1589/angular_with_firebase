@@ -2,9 +2,9 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {FormGroup,FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/Authentication/auth.service';
-import { HttpClient } from '@angular/common/http';
-import { ServiceResponse } from 'src/app/shared/models';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AuthorizeUser, AuthorizeUserErrorResponse } from 'src/app/shared/models/Response/authorize.user.response';
+import { throwError } from 'rxjs';
 
 
 @Component({
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit,AfterViewInit {
  }
  
   ngOnInit() {
+    // remove presaved token from local storage
     localStorage.removeItem('token');
   }
 
@@ -45,8 +46,8 @@ export class LoginComponent implements OnInit,AfterViewInit {
            localStorage.setItem('token',serviceResponse.idToken);
            this._router.navigate(['/admin']);
       }
-    },(errorResponse:AuthorizeUserErrorResponse) =>{
-       console.log(errorResponse.error.message)
+    },(errorResponse) =>{
+       console.log(errorResponse)
     });
   }
 
@@ -54,7 +55,6 @@ export class LoginComponent implements OnInit,AfterViewInit {
     
   }
 
-onClick(){
-}
-
+ onClick(){
+ }
 }

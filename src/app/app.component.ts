@@ -9,7 +9,7 @@ export class AppComponent implements OnInit {
   title = 'Angular FireBase';
 
   ngOnInit(){
-    localStorage.removeItem("Token");
+    //localStorage.removeItem("Token");
   }
 }
 

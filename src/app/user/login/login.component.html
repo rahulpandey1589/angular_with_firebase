@@ -1,8 +1,7 @@
-<div class="body">
 <div class="container centered">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="row">
-      <div class="col">
+      <div class="col-lg-12">
         <div class="row">
           <input type="text" placeholder="Please Enter User Name" class="form-control input" formControlName="userName">
           <div class="error-text" *ngIf="loginForm.controls['userName'].errors && loginForm.controls['userName'].touched">
@@ -29,5 +28,4 @@
       </div>
     </div>
   </form>
-</div>
 </div>

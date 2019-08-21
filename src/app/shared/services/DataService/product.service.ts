@@ -2,22 +2,47 @@ import { Injectable } from "@angular/core";
 import { Observable, concat } from "rxjs";
 
 import { ProductModel } from "../../models/ProductModel";
+import { HttpClient } from "@angular/common/http";
+import { GlobalConfigurationModel } from "../../models/globalconfigModel";
+import { map } from "rxjs/operators";
 
 
 
 @Injectable()
 export class ProductService {
-
+     
+   
     productModelArray: ProductModel[] = [];
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
 
     fetchProducts(category: string): ProductModel[] {
-        let response =  this.loadAllBeverages()
-                       .filter(catg => catg.productCategory == category)
-                       
+        
+        let productModel:ProductModel[]=[];
+        this.http.get<ProductModel[]>('https://angular-firebase-825de.firebaseio.com/beverages.json')
+        .subscribe(data =>{
+              data.forEach(element => {
+                 let prod = new ProductModel();
+                 prod.costPrice = element.costPrice;
+                 prod.imageURL = element.imageURL;
+                 prod.maxItemAllowedInCart = element.maxItemAllowedInCart;
+                 prod.productCategory = element.productCategory;
+                 prod.productId = element.productId;
+                 prod.productName = element.productName;
 
-        return response;
+                 productModel.push(prod);
+              });
+        })             
+
+        return productModel;
+    }
+
+    storeProducts(){
+      const beveragesList = this.loadAllBeverages();
+      var requestUrl = "https://angular-firebase-825de.firebaseio.com/beverages.json";
+      this.http.post(requestUrl,beveragesList).subscribe(data =>{
+        console.log('Records Inserted Succesfully!!!');
+      });
     }
 
     private handleError(error: Response) {
@@ -32,7 +57,7 @@ export class ProductService {
     private loadAllBeverages(): ProductModel[] {
         this.productModelArray = [];
 
-        for(var i=0; i<=100;i++){
+        for(var i=0; i<=10;i++){
             let prod5 = new ProductModel();
             prod5.costPrice = 40;
             prod5.productCategory = "Beverages";

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from '../services/Authentication/auth.service';
 import { Router } from '@angular/router';
 
@@ -8,19 +8,26 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   
-  isLoggedIn$ : Observable<boolean>;
+  isLoggedIn = false;
+  private userSub : Subscription;
    
-  constructor(private _userService: AuthService, private _router: Router) { 
+  constructor(private authService: AuthService, 
+    private _router: Router) { 
 
   }
 
   ngOnInit() {
-    this.isLoggedIn$ = this._userService.isLoggedIn;
+    this.userSub =  this.authService.user.subscribe(user =>{
+      this.isLoggedIn = !!user;
+    });
   }
 
   onLogOutClick(){
-    this._userService.logOut();
+    this.authService.signOut();
   }
+   ngOnDestroy(){
+     this.userSub.unsubscribe();
+   }
 }

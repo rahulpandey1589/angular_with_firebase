@@ -66,11 +66,11 @@ import {
     ProductService,
     AdminAuthGuard,
     UserService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpServiceInterceptor,
-      multi: true
-    }
+     {
+       provide: HTTP_INTERCEPTORS,
+       useClass: HttpServiceInterceptor,
+       multi: true
+     }
   ],
   bootstrap: [AppComponent]
 })

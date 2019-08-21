@@ -25,7 +25,7 @@ export class BeveragesComponent implements OnInit {
   }
 
   bindBeverages() {
-      let prodResponse = this._productService.fetchProducts('Beverages');
+      let prodResponse = this._productService.fetchProducts('beverages');
       this.productItems = [];
       this.productItems = prodResponse;
   }
