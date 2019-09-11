@@ -7,7 +7,8 @@ import { UserRegistrationRequestModel } from '../../models/Request/UserRegistrat
 import { GlobalConfigurationModel } from '../../models/globalconfigModel';
 import { GetUserModel } from '../../models/Request/GetUserModel';
 import { ServiceResponse } from '../../models/Response/service.response';
-import { GetUserDetailsApiResponse, UserDetailsApiResponse } from 'src/app/shared/models/Response/GetUserDetailsApiResponse';
+import { GetUserDetailsApiResponse, 
+    UserDetailsApiResponse } from 'src/app/shared/models/Response/getUserDetailsApiResponse';
 
 @Injectable()
 export class UserService {
