@@ -9,8 +9,6 @@ import { VegetablesComponent } from "./vegetables/vegetables.component";
 import { HomeComponent } from "./home/home.component";
 import { AuthGuard } from "./shared/services/Authentication/auth_guard.service";
 import { AdminAuthGuard } from "./shared/services/Authentication/admin_auth_guard.service";
-import { StopWatchParent } from "./poc/stopwatch.parent.component";
-import { AngularLifeCycleHooks } from "./poc/lifecyclehooks.component";
 
 
 const appRoutes: Routes= [
@@ -19,10 +17,6 @@ const appRoutes: Routes= [
  { path:'fruits',component:FruitsComponent,canActivate:[AuthGuard]},
  { path:'beverages',component:BeveragesComponent,canActivate:[AuthGuard]},
  { path:'vegetables',component:VegetablesComponent,canActivate:[AuthGuard]},
-  /*----------------POC Components Added Below--------------------------------------*/
- { path:'poc',component:StopWatchParent,canActivate:[AuthGuard]},
- {path:'lifecyclehooks', component:AngularLifeCycleHooks}, 
-  /*---------------------------------------------------------------------*/
  { 
      path:'user',
      loadChildren:'./user/user.module#UserModule'

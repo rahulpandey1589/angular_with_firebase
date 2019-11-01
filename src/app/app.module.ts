@@ -12,14 +12,6 @@ import { BeveragesComponent } from './beverages/beverages.component';
 import { HomeComponent } from './home/home.component';
 import { CanDeActivateGuard } from './user/userregistration/userregistration.candeactivate.guard';
 
-
-/*These components are added as a part of POC. Can be removed later*/
-import {StopWatchComponent} from './poc/stopwatch.component';
-import {StopWatchParent} from './poc/stopwatch.parent.component';
-import {AngularLifeCycleHooks} from './poc/lifecyclehooks.component';
-/*-----------------------------------------------------------------*/
-
-
 import {
   HttpServiceInterceptor ,
   ProductInfoComponent ,
@@ -46,11 +38,7 @@ import {
     FruitsComponent,
     VegetablesComponent,
     BeveragesComponent,
-    ProductInfoComponent,
-    /*POC Component. Can be removed later stage*/
-    StopWatchComponent,
-    StopWatchParent,
-    AngularLifeCycleHooks
+    ProductInfoComponent
   ],
   imports: [
     BrowserModule,
