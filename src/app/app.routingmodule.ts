@@ -27,6 +27,7 @@ const appRoutes: Routes= [
      canActivate:[AdminAuthGuard]
  },
  { path:'notfound',component:PageNotFoundComponent,canActivate:[AuthGuard]}, 
+ 
  { path:'**', redirectTo:'notfound',pathMatch:'full'}
 ];
 

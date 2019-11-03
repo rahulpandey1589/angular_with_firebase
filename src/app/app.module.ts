@@ -12,17 +12,7 @@ import { BeveragesComponent } from './beverages/beverages.component';
 import { HomeComponent } from './home/home.component';
 import { CanDeActivateGuard } from './user/userregistration/userregistration.candeactivate.guard';
 
-import {
-  HttpServiceInterceptor ,
-  ProductInfoComponent ,
-  FooterComponent ,
-  HeaderComponent,
-  PageNotFoundComponent,
-  UserService,
-  AdminAuthGuard,
-  ProductService,
-  AuthGuard,
-  AuthService } from './shared';
+import * as Shared from './shared';
 
 
 
@@ -31,14 +21,14 @@ import {
   declarations: [
     AppComponent,
     HomeComponent,
-    HeaderComponent,
-    FooterComponent,
+    Shared.HeaderComponent,
+    Shared.FooterComponent,
     DashboardComponent,
-    PageNotFoundComponent,
+    Shared.PageNotFoundComponent,
     FruitsComponent,
     VegetablesComponent,
     BeveragesComponent,
-    ProductInfoComponent
+    Shared.ProductInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -48,15 +38,15 @@ import {
     HttpClientModule
   ],
   providers: [
-    AuthService,
-    AuthGuard,
+    Shared.AuthService,
+    Shared.AuthGuard,
     CanDeActivateGuard,
-    ProductService,
-    AdminAuthGuard,
-    UserService,
+    Shared.ProductService,
+    Shared.AdminAuthGuard,
+    Shared.UserService,
      {
        provide: HTTP_INTERCEPTORS,
-       useClass: HttpServiceInterceptor,
+       useClass: Shared.HttpServiceInterceptor,
        multi: true
      }
   ],
